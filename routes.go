@@ -17,25 +17,29 @@ var routes = Routes{
 	Route{
 		"PetsList",
 		"GET",
-		"/pets",
+		GenerateRoute("/pets"),
 		petList,
 	},
 	Route{
 		"CreatePet",
 		"POST",
-		"/pets",
+		GenerateRoute("/pets"),
 		addPet,
 	},
 	Route{
 		"DestroyPet",
 		"POST",
-		"/pets/{petId}",
+		GenerateRoute("/pets/{petId}"),
 		deletePet,
 	},
 	Route{
 		"PetsDetail",
 		"GET",
-		"/pets/{petId}",
+		GenerateRoute("/v1/pets/{petId}"),
 		petDetail,
 	},
+}
+
+func GenerateRoute(route string) string {
+	return "/v1" + route
 }

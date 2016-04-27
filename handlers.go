@@ -82,7 +82,6 @@ func deletePet(w http.ResponseWriter, r *http.Request) {
 	if err := RepoDestroyPet(petId); err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		petNotFound := GenerateMessage("Pet ID: " + vars["petId"] + " Not Found")
-		w.WriteHeader(404)
 		if err := json.NewEncoder(w).Encode(petNotFound); err != nil {
 			panic(err)
 		}
