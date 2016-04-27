@@ -35,7 +35,7 @@ var routes = Routes{
 	Route{
 		"PetsDetail",
 		"GET",
-		GenerateRoute("/v1/pets/{petId}"),
+		GenerateRoute("/pets/{petId}"),
 		petDetail,
 	},
 }
