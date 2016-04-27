@@ -33,7 +33,7 @@ func petDetail(w http.ResponseWriter, r *http.Request) {
 
 	pet := RepoGetPet(petId)
 	if (pet == Pet{}) {
-		petNotFound := GenerateError("Pet ID: " + vars["petId"] + " Not Found")
+		petNotFound := GenerateMessage("Pet ID: " + vars["petId"] + " Not Found")
 		w.WriteHeader(404)
 		if err := json.NewEncoder(w).Encode(petNotFound); err != nil {
 			panic(err)
@@ -81,15 +81,14 @@ func deletePet(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	if err := RepoDestroyPet(petId); err != nil {
 		w.WriteHeader(http.StatusNotFound)
-		//fmt.Fprintln(err)
-		petNotFound := GenerateError("Pet ID: " + vars["petId"] + " Not Found")
+		petNotFound := GenerateMessage("Pet ID: " + vars["petId"] + " Not Found")
 		w.WriteHeader(404)
 		if err := json.NewEncoder(w).Encode(petNotFound); err != nil {
 			panic(err)
 		}
 	} else {
 		w.WriteHeader(http.StatusOK)
-		if err := json.NewEncoder(w).Encode(GenerateError("Deletion successful")); err != nil {
+		if err := json.NewEncoder(w).Encode(GenerateMessage("Deletion successful")); err != nil {
 			panic(err)
 		}
 	}
