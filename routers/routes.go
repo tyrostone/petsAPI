@@ -1,6 +1,7 @@
-package main
+package routers
 
 import (
+	"github.com/tyrostone/petsAPI/controllers"
 	"net/http"
 )
 
@@ -18,25 +19,43 @@ var routes = Routes{
 		"PetsList",
 		"GET",
 		GenerateRoute("/pets"),
-		petList,
+		controllers.PetList,
 	},
 	Route{
 		"CreatePet",
 		"POST",
 		GenerateRoute("/pets"),
-		addPet,
+		controllers.AddPet,
 	},
 	Route{
 		"DestroyPet",
-		"POST",
+		"DELETE",
 		GenerateRoute("/pets/{petId}"),
-		deletePet,
+		controllers.DeletePet,
 	},
 	Route{
 		"PetsDetail",
 		"GET",
 		GenerateRoute("/pets/{petId}"),
-		petDetail,
+		controllers.PetDetail,
+	},
+	Route{
+		"Login",
+		"POST",
+		GenerateRoute("/login"),
+		controllers.Login,
+	},
+	Route{
+		"Login",
+		"POST",
+		GenerateRoute("/login"),
+		controllers.Logout,
+	},
+	Route{
+		"RefreshToken",
+		"GET",
+		GenerateRoute("/refresh-token"),
+		controllers.RefreshToken,
 	},
 }
 

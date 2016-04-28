@@ -1,7 +1,8 @@
-package main
+package routers
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/tyrostone/petsAPI/helpers"
 	"net/http"
 )
 
@@ -11,7 +12,7 @@ func NewRouter() *mux.Router {
 		var handler http.Handler
 
 		handler = route.HandlerFunc
-		handler = Logger(handler, route.Name)
+		handler = helpers.Logger(handler, route.Name)
 
 		router.
 			Methods(route.Method).
